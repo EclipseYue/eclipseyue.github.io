@@ -13,6 +13,12 @@ nav:
   - 课程:
     - Course/Course_asm.md
 
+  # - 笔记:
+  #   - Note/Note.md
+
+  - 美赛:
+    - MCM/MCM.md
+
 theme:
   name: material
   palette:
