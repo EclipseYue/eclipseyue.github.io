@@ -47,10 +47,7 @@ RNN梯度爆炸(长时间序列的缺点)
 
 所以引入LSTM
 
-<figure class="figure-image">
-  <img src="assets\images\LSTM.png" alt="LSTM示意图" />
-  <figcaption>LSTM示意图及公式</figcaption>
-</figure>
+![An image caption](assets\images\LSTM.png)
 
 * 遗忘门：根据输入信息和隐藏信息得出遗忘信号，用于使$C_{t-1}$遗忘
 $$
