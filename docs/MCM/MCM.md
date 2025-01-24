@@ -56,7 +56,7 @@ $$
 
 所以引入LSTM
 
-![An image caption](assets\images\LSTM.png)
+<!-- ![An image caption](assets\images\LSTM.png) -->
 
 * 遗忘门：根据输入信息和隐藏信息得出遗忘信号，用于使$C_{t-1}$遗忘
 $$
