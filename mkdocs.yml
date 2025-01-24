@@ -21,6 +21,7 @@ nav:
 
   - 美赛:
     - MCM/MCM.md
+    - MCM/MCM2.md
 
 theme:
   name: material
