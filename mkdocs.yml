@@ -48,6 +48,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist
 
-# plugins:
-#   - mkdocs-img2fig
+plugins:
+  - search
+  - img2fig
 
