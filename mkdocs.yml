@@ -50,5 +50,5 @@ markdown_extensions:
 
 plugins:
   - search
-  - img2fig
+  - img2figv2
 
