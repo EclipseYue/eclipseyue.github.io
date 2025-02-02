@@ -13,8 +13,8 @@ nav:
   - 课程:
     - Course/Course_asm.md
 
-  # - 笔记:
-  #   - Note/Note.md
+  - 笔记:
+    - Note/Note.md
 
   - 开发:
     - Dev/Dev.md
