@@ -8,24 +8,12 @@ nav:
   - 个人:
     - 个人介绍: ME/profile.md
   
-  - 项目:
-    - 项目: Project/projects.md
-    - 项目2: Project/projects2.md
-
-  - 课程:
-    - 课程: Course/course_asm.md
-    - 课程2: Course/course2.md
-
   - 笔记:
     - 笔记导航: Note/index.md
     - 编译原理: Note/complie.md
 
   - 开发:
     - 开发学习: Dev/dev.md
-
-  - 美赛:
-    - 美赛1: MCM/MCM.md
-    - 美赛2: MCM/MCM2.md
 
 theme:
   name: material
