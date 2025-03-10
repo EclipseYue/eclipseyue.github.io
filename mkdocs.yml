@@ -17,7 +17,7 @@ nav:
     -课程: Course/Course_asm.md
 
   - 笔记:
-    -笔记本: Note/Note.md
+    -笔记导航: Note/Index.md
     -编译原理: Note/Complie.md
 
   - 开发:
