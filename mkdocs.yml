@@ -8,24 +8,24 @@ site_description: 个人网站文档
 # [Navigation]
 nav:
   - 个人:
-    -个人介绍: ME/profile.md
+    - 个人介绍: ME/profile.md
   
   - 项目:
-    -项目: Project/Projects.md
+    - 项目: Project/Projects.md
 
   - 课程:
-    -课程: Course/Course_asm.md
+    - 课程: Course/Course_asm.md
 
   - 笔记:
-    -笔记导航: Note/Index.md
-    -编译原理: Note/Complie.md
+    - 笔记导航: Note/Index.md
+    - 编译原理: Note/Complie.md
 
   - 开发:
-    -开发学习: Dev/Dev.md
+    - 开发学习: Dev/Dev.md
 
   - 美赛:
-    -美赛1: MCM/MCM.md
-    -美赛2: MCM/MCM2.md
+    - 美赛1: MCM/MCM.md
+    - 美赛2: MCM/MCM2.md
 
 theme:
   name: material
