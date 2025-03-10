@@ -21,7 +21,7 @@ theme:
     logo: material/book-open-page-variant  # 网站 Logo
     repo: fontawesome/brands/github        # 仓库图标
 
-  favicon: assets/favicon.png              # 网站图标
+  favicon: assets/favicon.jpg              # 网站图标
   palette:
     # 亮色主题
     - media: "(prefers-color-scheme: light)"
