@@ -1,8 +1,6 @@
 # [Info]
 site_name: 月全食的笔记本
 site_url: https://eclipseyue.github.io
-site_author: 月全食
-site_keywords: 月全食, 个人网站, 个人博客, 个人笔记, 个人文档
 site_description: 个人网站文档
 
 # [Navigation]
@@ -11,17 +9,17 @@ nav:
     - 个人介绍: ME/profile.md
   
   - 项目:
-    - 项目: Project/Projects.md
+    - 项目: Project/projects.md
 
   - 课程:
-    - 课程: Course/Course_asm.md
+    - 课程: Course/course_asm.md
 
   - 笔记:
-    - 笔记导航: Note/Index.md
-    - 编译原理: Note/Complie.md
+    - 笔记导航: Note/index.md
+    - 编译原理: Note/complie.md
 
   - 开发:
-    - 开发学习: Dev/Dev.md
+    - 开发学习: Dev/dev.md
 
   - 美赛:
     - 美赛1: MCM/MCM.md
