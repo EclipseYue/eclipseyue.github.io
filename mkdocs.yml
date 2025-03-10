@@ -10,13 +10,30 @@ nav:
   
   - 笔记:
     - 笔记导航: Note/index.md
-    - 编译原理: Note/complie.md
+    - 编译原理: 
+      - 课程信息: Note/complie.md
+      - 词法分析: Note/lexical_analysis.md
+      - 语法分析: Note/syntax_analysis.md
 
 theme:
-  name: material
   palette:
-    primary: blue
-    accent: light blue
+    # 亮色主题
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换至暗色模式
+
+    # 暗色主题
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换至亮色模式
   font:
     text: Roboto
     code: Roboto Mono
@@ -24,6 +41,12 @@ theme:
     - navigation.top
     - navigation.tabs
     - navigation.sections
+
+  # 导航栏设置
+  nav_style: dark          # 导航栏样式
+  collapse_navigation: true # 折叠导航
+  sticky_navigation: true  # 固定导航
+  
 
 markdown_extensions:
   - admonition
@@ -36,8 +59,13 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.tasklist
-  - attr_list
-  - md_in_html
+  # - pymdownx.emoji
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/theme-switch.js
 
 plugins:
   - search
