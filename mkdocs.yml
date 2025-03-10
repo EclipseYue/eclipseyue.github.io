@@ -10,9 +10,11 @@ nav:
   
   - 项目:
     - 项目: Project/projects.md
+    - 项目2: Project/projects2.md
 
   - 课程:
     - 课程: Course/course_asm.md
+    - 课程2: Course/course2.md
 
   - 笔记:
     - 笔记导航: Note/index.md
