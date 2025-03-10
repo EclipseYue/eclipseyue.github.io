@@ -12,9 +12,6 @@ nav:
     - 笔记导航: Note/index.md
     - 编译原理: Note/complie.md
 
-  - 开发:
-    - 开发学习: Dev/dev.md
-
 theme:
   name: material
   palette:
