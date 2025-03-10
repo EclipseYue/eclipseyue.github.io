@@ -10,7 +10,7 @@ nav:
   
   - 笔记:
     - 笔记导航: Note/index.md
-    # - 编译原理: Note/complie.md
+    - 编译原理: Note/complie.md
 
 theme:
   name: material
