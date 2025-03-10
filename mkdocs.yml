@@ -16,6 +16,7 @@ nav:
       - 语法分析: Note/syntax_analysis.md
 
 theme:
+  name: material
   palette:
     # 亮色主题
     - media: "(prefers-color-scheme: light)"
@@ -65,7 +66,7 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
-  - javascripts/theme-switch.js
+  - javascripts/extra.js
 
 plugins:
   - search
