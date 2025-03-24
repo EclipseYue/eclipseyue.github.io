@@ -16,7 +16,7 @@ $$
 $$
 
 $$
-令 x = tan(\theta), dx = sec(\theta)d(\theta)
+令 x = tan(\theta), dx = sec^2(\theta)d(\theta)
 $$
 
 $$
