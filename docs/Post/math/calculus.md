@@ -41,3 +41,15 @@ $$
 = \frac{arctan(x)}{2} + \frac{x}{2(1+x^2)} + C 
 $$
 
+有一个通项公式(尚未推导)
+
+$$
+I_m = \int \frac{1}{(x^2+a^2)^m} dx
+由于分部积分法 \\
+= \frac{x}{2a^2(m-1)(x^2+a^2)^{m-1}} + \frac{2m-3}{2a^2}I_{m-1}, m>1
+
+
+最终I_1 = \frac{arctan(\frac{x}{a})}{a} + C
+
+
+$$
