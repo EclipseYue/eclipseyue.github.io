@@ -55,3 +55,10 @@ $$
 $$
 最终I_1 = \frac{arctan(\frac{x}{a})}{a} + C
 $$
+
+3.25
+
+高斯积分
+$$
+\int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
