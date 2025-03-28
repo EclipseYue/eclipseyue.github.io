@@ -31,14 +31,14 @@ nav:
     #   - 操作系统: Post/professional/operating_system.md
     #   - 计算机网络: Post/professional/computer_network.md
 
-    - 论文:
-      - 论文导航: Paper/index.md
-      - 论文笔记: Paper/paper.md
+  - 论文:
+    - 论文导航: Paper/index.md
+    - 论文笔记: Paper/paper.md
 
-    - 技术:
-      - 技术导航: Tech/index.md
-      - 实习: Tech/job.md
-      - 问题和回答: Tech/Q&A.md
+  - 技术:
+    - 技术导航: Tech/index.md
+    - 实习: Tech/job.md
+    - 问题和回答: Tech/Q&A.md
 
 
 theme:
