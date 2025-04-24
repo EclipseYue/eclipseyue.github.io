@@ -69,7 +69,8 @@ pop:做哈希得到index，hash表位置变为下一个
 
 核心在于使得$\sigma$不被改变
 
-![截屏2025-04-24 15.17.53](https://tvax1.sinaimg.cn/large/008wagwxly1i0rx9nu0zcj31ow0l4djb.jpg)
+
+![pic1](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/pic.jpg)
 
 也就是复制数组，使得新的作用域有新的binding。但是这样太大、太浪费，所以使用二叉搜索树。
 
