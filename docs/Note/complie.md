@@ -484,69 +484,58 @@ Taming Conditional Branches
 
 ## Chapter 10
 
-Liveness Analysis
+### 活性分析（Liveness Analysis）
 
-为了减少寄存器使用
+活性分析是一种编译器优化技术，用于减少寄存器的使用。通过确定哪些变量在未来会被用到（即它们是活跃的），编译器可以更有效地分配寄存器，避免不必要的内存访问。
 
-未来会用到，则其为活跃
+#### 关键概念
 
-注意来(静态分析都活跃)和更新赋值后边
+- **活跃性**：如果一个变量在某条边上之后会被使用，并且在这期间没有被重新定义，则该变量在此边上的状态被认为是活跃的。
+- **Live-in**：若一个变量在节点的任意入边（in-edges）上是活跃的，则称它为该节点的live-in。
+- **Live-out**：若一个变量在节点的任意出边（out-edges）上是活跃的，则称它为该节点的live-out。
 
-一些定义:out-edges,in-edges,pred[n],succ[n],def[n],use[n]
-* out-edges:从n出发的边
-* in-edges:到达n的边
-* pred[n]:n的前驱
-* succ[n]:n的后继
-* def[n/a]:n定义的变量或者a被定义的语句集合
-* use[n/a]:n使用的变量或者a被使用的语句集合
+#### 相关术语
 
-Liveness: a var is live on an edge if there is a directed path from that edge to a use of that var thatdoes not go through any def
+- **out-edges**：从当前节点出发的所有边。
+- **in-edges**：指向当前节点的所有边。
+- **pred[n]**：节点n的所有前驱节点集合。
+- **succ[n]**：节点n的所有后继节点集合。
+- **def[n/a]**：在节点n或语句a中定义的变量集合。
+- **use[n/a]**：在节点n或语句a中使用的变量集合。
 
-Live-in: a var is live-in at a node if it is live on ant of the in-edges of that node
-Live-out: a var is live-out at a node if it is live on any of the out-edges of that node
+#### 计算规则
 
-in[n]: Live-in set at node n
-out[n]: Live-out set at node n 也就是其在某一个节点的后继节点的in set中
+1. 如果变量a在任何后继节点m的live-in集合中，则a也在当前节点n的live-out集合中。
+2. 如果变量a在节点n的use集合中，则a也在n的live-in集合中。
+3. 如果变量a在n的live-out集合中但不在def集合中，则a也在n的live-in集合中。
 
-cal of liveness:
+以数学形式表示：
 
-* $$Rule1:If a \in in[m] for any m \in succ[n],then a \in out[n]$$
-* $$Rule2:If a \in use[n], then a \in in[n]$$
-* $$Rule3:If a \in out[n] and a doesn't belong to def[n],then a \in in[n]$$
+- $$in[n] = use[n] \cup (out[n] - def[n])$$
+- $$out[n] = \bigcup_{s \in succ[n]} in[s]$$
 
-e.g.
-![eg1](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/livenesseg1.png)
+#### 示例
 
-in[m1] = {d} in[m2] = {e}
-out[n] = {d,e}
-in[n] = {b} union ({d,e} - empty) = {b,d,e} (use Rule3)
-out[p] = {b,d,e} (use Rule1)
-in[p] = {b,d,e} (use Rule1)
+假设有如下情况：
 
+- in[m1] = {d}, in[m2] = {e}
+- out[n] = {d, e}
+- 根据Rule 3: in[n] = {b} ∪ ({d, e} - empty) = {b, d, e}
+- 根据Rule 1: out[p] = {b, d, e}
+- 再次应用Rule 1: in[p] = {b, d, e}
 
+#### 集合语言表述
 
-转换为集合语言表述：
-* $$in[n] = use[n] union (out[n] - def[n])$$
-* $$out[n] = Union_{s \in succ[n]} in[s]$$
+- $$in[n] = use[n] \cup (out[n] - def[n])$$
+- $$out[n] = \bigcup_{s \in succ[n]} in[s]$$
 
+#### 使用Use-Def链进行分析
 
+通过使用Use-Def链（每个变量的使用位置和定义位置之间的关系），可以在控制流图（CFG）上高效地执行整个流程的in-out分析。这种方法允许编译器静态地分析程序，决定何时何地变量是活跃的，从而更好地管理寄存器分配和内存访问。
 
-使用use-def链来实现整个流程的in-out分析
+#### 静态与动态分析
 
+- **静态分析**是在控制流图（CFG）上进行的，不依赖于具体的输入数据。
+- **动态分析**则是在程序执行过程中进行的，能够考虑到实际运行时的数据流信息。然而，在这里讨论的主要是静态分析方法。 
 
-
-
-
-静态是在CFG上的 动态是在执行中的
-
-
-
-
-
-
-
-
-
-
-
-
+这种分析有助于编译器优化代码，提高程序执行效率。
