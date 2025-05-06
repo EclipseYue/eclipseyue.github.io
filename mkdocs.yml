@@ -41,6 +41,7 @@ nav:
     - 问题和回答: Tech/Q&A.md
     - C++: Tech/Cpp.md
     - Java: Tech/Java.md
+    - record: Tech/record.md
 
   - 生活:
     - 生活导航: Life/index.md
