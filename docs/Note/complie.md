@@ -539,3 +539,52 @@ Taming Conditional Branches
 - **动态分析**则是在程序执行过程中进行的，能够考虑到实际运行时的数据流信息。然而，在这里讨论的主要是静态分析方法。 
 
 这种分析有助于编译器优化代码，提高程序执行效率。
+
+## Chapter 11
+基于图染色的寄存器分配问题
+这两个问题都是NP-complete的
+
+### Coloring by Simplification
+#### Build
+构建出一个冲突图
+
+#### Simplify
+m有小于K个邻居，即可以递归地染色所有点
+
+所以其自然地使用基于栈或者递归的算法用于染色，度小于K的点被移除，同时处理其邻居的度，直到没有这样的点为止
+
+#### Spill
+某个时刻其只剩下度大于K的点
+
+我们可以选择一些点进行溢出到内存
+
+即又称作乐观着色
+
+即选出度大于K的点放入内存中，继续操作其后续的点，直到变为空图
+
+#### Select
+
+
+内存中点上色没懂
+
+添加指令读出Actual Spill
+
+![Summary](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/c11_1.png)
+
+### Coalescing
+
+例如将movet1,t2中的t1和t2合并成新的寄存器
+
+#### Briggs: 
+Nodes a and b can be coalesced if the resulting node ab will have fewer than K neighbors of significant degree
+
+保证了K色图不会变成non-K色图
+
+#### George
+Nodes a and b can be coalesced if for every neighbor t of a, either t is a neighbor of b or t is of insignificant degree(<K)
+
+### Precolored Nodes
+
+
+
+
