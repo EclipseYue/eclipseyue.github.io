@@ -16,13 +16,19 @@ DFA NFA LL(0) LR(0) LL(1) LR(1) SLR LALR
 
 
 
+
+
 ## Chapter 5
 
 ### Symbol Table
 
+语义分析：定义联系使用，检查表达式类型正确否，抽象语法转化为易于生成中间代码的表示
+
+5.1 符号表
+
 * Symbol Table要干什么？
 
-记录变量的类型、作用域。
+将标识符映射到它们的类型和储存位置。
 
 1. 加入定义
 2. 右定义覆盖左定义
@@ -468,6 +474,9 @@ eliminate SEQs
 
 
 
+
+
+
 Taming Conditional Branches
 
 
@@ -476,6 +485,19 @@ Taming Conditional Branches
 
 
 ## Chapter 9
+
+一条指令可以被表示为树形IR也称作tree pattern,使用nooverlapping tree pattern标识
+
+使用J指令集讲解
+
+每个tree pattern表示一个指令，像瓷砖一样拼接在一起，自底向上、从左到右，
+
+
+最大覆盖瓦片覆盖
+
+
+每一步找最大的瓦片，局部最优
+
 
 
 
@@ -540,13 +562,22 @@ Taming Conditional Branches
 
 这种分析有助于编译器优化代码，提高程序执行效率。
 
+
+
+
+### 冲突图
+
+
+
+
+
 ## Chapter 11
 基于图染色的寄存器分配问题
 这两个问题都是NP-complete的
 
 ### Coloring by Simplification
 #### Build
-构建出一个冲突图
+构建出一个冲突图（就是那个语句中变量之间的冲突关系图）
 
 #### Simplify
 m有小于K个邻居，即可以递归地染色所有点
@@ -586,5 +617,9 @@ Nodes a and b can be coalesced if for every neighbor t of a, either t is a neigh
 ### Precolored Nodes
 
 
+
+
+
+虽然t231是寄存器，但他会被优先spill所以输入内存
 
 

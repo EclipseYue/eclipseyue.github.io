@@ -11,9 +11,8 @@ nav:
   - 笔记:
     - 笔记导航: Note/index.md
     - 编译原理: 
-      - 课程信息: Note/complie.md
-      - 词法分析: Note/lexical_analysis.md
-      - 语法分析: Note/syntax_analysis.md
+      - 课程笔记: Note/complie.md
+
   
   - 考研:
     - 考研导航: Post/index.md
