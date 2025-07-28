@@ -13,22 +13,41 @@ nav:
     - 编译原理: 
       - 课程笔记: Note/compile.md
 
-  
-  - 考研:
-    - 考研导航: Post/index.md
-    - 数学:
-      - 数学导航: Post/math/index.md
-      - 微积分: Post/math/calculus.md
-      - 线性代数: Post/math/linear_algebra.md
-    # - 政治:
-    #   - 政治导航: Post/politics/index.md
-    #   - 政治导航: Post/politics/politics.md
-    # - 专业课:
-    #   - 专业课导航: Post/professional/index.md
-    #   - 数据结构: Post/professional/data_structure.md
-    #   - 计算机组成原理: Post/professional/computer_organization.md
-    #   - 操作系统: Post/professional/operating_system.md
-    #   - 计算机网络: Post/professional/computer_network.md
+  - 数学:
+    - 数学导航: Math/index.md
+    - 微积分:
+      - 微积分: Math/calculus/calculus.md
+    - 线性代数:
+      - 线性代数: Math/linear_algebra/linear_algebra.md
+    - 概率论:
+      - 概率论: Math/probability/probability.md
+  - AI:
+    - AI导航: AI/index.md
+    - 机器学习:
+      - 机器学习: AI/machine_learning/machine_learning.md
+    - 深度学习:
+      - 深度学习: AI/deep_learning/deep_learning.md
+    - 自然语言处理:
+      - 自然语言处理: AI/nlp/nlp.md
+    - 计算机视觉:
+      - 计算机视觉: AI/cv/cv.md
+    - 强化学习:
+      - 强化学习: AI/reinforcement_learning/reinforcement_learning.md
+    - 其他:
+      - 其他: AI/other/1.md
+    
+
+
+  - CS:
+    - CS导航: CS/index.md
+    - 数据结构:
+      - 数据结构: CS/data_structure/data_structure.md
+    - 计算机组成原理:
+      - 计算机组成原理: CS/computer_organization/computer_organization.md
+    - 操作系统:
+      - 操作系统: CS/operating_system/operating_system.md
+    - 计算机网络:
+      - 计算机网络: CS/computer_network/computer_network.md
 
   - 论文:
     - 论文导航: Paper/index.md
