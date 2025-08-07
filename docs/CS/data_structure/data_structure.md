@@ -118,7 +118,7 @@
     4. Pop(&S, &e)
     5. GetTop(S, &e)
     6. DestroyStack(&S)
-* 特性: $n$ 个不同元素进栈时，出栈元素的不同排列数为 $C_n = \dfrac{1}{n+1} \binom{2n}{n}$（卡特兰数）
+* 特性: $$n$$ 个不同元素进栈时，出栈元素的不同排列数为 $$C_n = \dfrac{1}{n+1} \binom{2n}{n}$$（卡特兰数）
 
 #### 3.1.1 栈的顺序存储
 * 定义:使用一段地址连续的存储单元依次存储栈中的数据元素，top指向栈顶元素,初始值为-1.
@@ -192,7 +192,9 @@ typedef struct {
         * 队满: 插入导致rear == front 置tag == 1
         * 队空: 删除导致front == rear 置tag == 0
         * 元素个数: (rear - front + MAXSIZE) % MAXSIZE
-    ![循环队列](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/REqueue.jpg)
+
+        ![](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/REqueue.jpg)
+        
 * 队列的链式存储
     * 定义:使用链表存储队列中的数据元素，QHead指向队头元素，QTail指向队尾元素。
     ````
