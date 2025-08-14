@@ -61,6 +61,7 @@ nav:
     - Java: Tech/java_path.md
     - 力扣记录: Tech/leetcode_record.md
     - record: Tech/record.md
+    - STL容器: Tech/stl_cheatsheet.md
 
   - 生活:
     - 生活导航: Life/index.md
