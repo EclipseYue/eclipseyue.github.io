@@ -54,11 +54,12 @@ nav:
     - 论文笔记: Paper/paper.md
 
   - 技术:
-    - 技术导航: Tech/index.md
-    - 实习: Tech/job.md
-    - 问题和回答: Tech/Q&A.md
-    - C++: Tech/Cpp.md
-    - Java: Tech/Java.md
+    - 25秋招记录: Tech/25fall_recruitment_record.md
+    - 简历复习: Tech/resume_review.md
+    - 算法学习: Tech/alg_learn.md
+    - C++八股: Tech/cpp_baguette.md
+    - Java: Tech/java_path.md
+    - 力扣记录: Tech/leetcode_record.md
     - record: Tech/record.md
 
   - 生活:
