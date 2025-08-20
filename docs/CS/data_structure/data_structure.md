@@ -222,6 +222,31 @@ typedef struct {
 !!!做题
 
 ## ch4.串
+串：字符串，子串：多个连续字符组成的子序列，
+
+串的存储结构:
+````
+线性表版
+#define MAXLEN 255
+typedef struct{
+    char ch[MAXLEN];
+    int length;
+}SString;
+
+或者
+
+堆分配版
+typedef struct{
+    char *ch;
+    int length;
+}HString;
+
+````
+
+
+
+
+
 
 
 ## ch5.树与二叉树
