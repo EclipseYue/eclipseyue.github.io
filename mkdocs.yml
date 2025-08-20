@@ -57,12 +57,13 @@ nav:
     - 25秋招记录: Tech/25fall_recruitment_record.md
     - 简历复习: Tech/resume_review.md
     - 算法学习: Tech/alg_learn.md
+    - C++基础: Tech/cpp_basic.md
     - C++八股: Tech/cpp_baguette.md
     - Java: Tech/java_path.md
     - 力扣记录: Tech/leetcode_record.md
     - record: Tech/record.md
     - STL容器: Tech/stl_cheatsheet.md
-    - C++基础: Tech/cpp_basic.md
+
 
 
   - 生活:
