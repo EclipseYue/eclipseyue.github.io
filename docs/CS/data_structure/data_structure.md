@@ -500,7 +500,7 @@ typedef struct {
       $$ h = \lceil \log_2(n) + 1 \rceil $$
       其中n为结点数。
 
-### 5.3 二叉树的存储结构
+**二叉树的存储结构**
 !!! abstract "二叉树存储结构"
     二叉树的存储结构主要有两种：顺序存储和链式存储。
 
@@ -515,20 +515,378 @@ typedef struct BiTNode {
 } BiTNode, *BiTree;
 ````
 
+!!! warning
+    在含有n个结点的二叉链表中，含有n+1个空链域。
 
+### 5.3 二叉树的遍历
+!!! abstract "二叉树遍历"
+    二叉树的遍历是指按照一定的顺序访问二叉树的所有结点。
+
+!!! note "遍历方式"
+    - **前序遍历**: 根结点 -> 左子树 -> 右
+    - **中序遍历**: 左子树 -> 根结点 -> 右子树
+    - **后序遍历**: 左子树 -> 右子树 -> 根
+    - **层序遍历**: 按层次从上到下、从左到右访问结点
+> 前中后可以理解为根被遍历到的顺序
+
+> 对于手写遍历，想象从根节点从上到下、从左到右环绕树，然后前序中序后序分别在左中右三个位置有标记，按照碰到标记的顺序作为顺序。
+
+前三种对应的递归算法如下:
+```c
+void PreOrder(BiTree T) {
+    if (T != NULL) {
+        visit(T);  // 访问根结点
+        PreOrder(T->lchild);      // 递归访问左子树
+        PreOrder(T->rchild);      // 递归访问右子树
+    }
+}
+
+void InOrder(BiTree T) {
+    if (T != NULL) {
+        InOrder(T->lchild);      // 递归访问左子树
+        visit(T);  // 访问根结点
+        InOrder(T->rchild);      // 递归访问右子树
+    }
+}
+
+void PostOrder(BiTree T) {
+    if (T != NULL) {
+        PostOrder(T->lchild);    // 递归访问左子树
+        PostOrder(T->rchild);    // 递归访问右子树
+        visit(T);  // 访问根结点
+    }
+}
+````
+
+前三种对应的非递归算法如下:
+```c
+todo "非递归遍历"
+```
+
+**层序遍历**:
+```c
+void LevelOrder(BiTree T) {
+    InitQueue(Q);  // 初始化队列
+    BiTree p;
+    EnQueue(Q, T);  // 将根结点入队
+    while (!QueueEmpty(Q)) {
+        DeQueue(Q, &p);  // 出队一个结点
+        visit(p);  // 访问该结点
+        if (p->lchild != NULL) EnQueue(Q, p->lchild);
+        if (p->rchild != NULL) EnQueue(Q, p->rchild);
+    }
+}
+```
+
+**由遍历序列构造二叉树**
+若已知中序序列，再给出其他三种遍历序列的其中一种，就可以唯一确定一棵二叉树。
+
+
+* 前序 + 中序
+每次从前序找到根结点，然后在中序中找到根结点的位置，将中序分为左子树和右子树，递归构造。
+
+
+```c
+BiTree CreateTree_PreIn(SString pre, SString in) {
+    if (pre.length == 0 || in.length == 0) return NULL;
+    BiTree T = (BiTree)malloc(sizeof(BiTNode));
+    T->data = pre.ch[0];  // 前序的第一个字符是根结点
+    int pos = LocateElem(in, T->data);  // 在中序中找到根结点位置
+    // 构造左子树：
+    // 前序序列中，根结点后面的 pos 个元素对应左子树的前序序列（即 pre[1..pos]），
+    // 中序序列中，根结点左侧的 pos 个元素对应左子树的中序序列（即 in[0..pos-1]）
+    T->lchild = CreateTree_PreIn(SubString(pre, 1, pos), SubString(in, 0, pos - 1));
+
+    // 构造右子树：
+    // 前序序列中，左子树之后的剩余元素对应右子树的前序序列（即 pre[pos+1..end]），
+    // 中序序列中，根结点右侧的剩余元素对应右子树的中序序列（即 in[pos+1..end]）
+    T->rchild = CreateTree_PreIn(SubString(pre, pos + 1), SubString(in, pos + 1));
+
+    return T;
+}
+```
+
+
+* 后序 + 中序
+每次从后序找到根结点，然后在中序中找到根结点的位置，将中序分为左子树和右子树，递归构造。
+
+```c
+BiTree CreateTree_PostIn(SString post, SString in) {
+    if (post.length == 0 || in.length == 0) return NULL;
+    BiTree T = (BiTree)malloc(sizeof(BiTNode));
+    T->data = post.ch[post.length - 1];  // 后序的
+    int pos = LocateElem(in, T->data);  // 在中序中找到根结点位置
+    // 构造左子树：
+    // 后序序列中，根结点前面的 pos 个元素对应左子树的后序序列（即 post[0..pos-1]），
+    // 中序序列中，根结点左侧的 pos 个元素对应左子树的中序序列（即 in[0..pos-1]）
+    T->lchild = CreateTree_PostIn(SubString(post, 0, pos - 1), SubString(in, 0, pos - 1));
+    // 构造右子树：
+    // 后序序列中，左子树之后的剩余元素对应右子树的后序序列（即 post[pos..end-1]），
+    // 中序列中，根结点右侧的剩余元素对应右子树的中序序列（即 in[pos+1..end]）
+    T->rchild = CreateTree_PostIn(SubString(post, pos, post.length - 2), SubString(in, pos + 1));
+    return T;
+}
+```
+
+
+* 层序 + 中序
+每次从层序找到根结点，然后在中序中找到根结点的位置，将中序分为左子树和右子树，递归构造。
+```c
+BiTree CreateTree_LevelIn(SString level, SString in) {
+    if (level.length == 0 || in.length == 0) return NULL;
+    BiTree T = (BiTree)malloc(sizeof(BiTNode));
+    T->data = level.ch[0];  // 层序的第一个字符
+    int pos = LocateElem(in, T->data);  // 在中序中找到根结点位置
+    // 构造左子树：
+    // 中序序列中，根结点左侧的 pos 个元素对应左子树的中序序列（即 in[0..pos-1]）
+    SString leftIn = SubString(in, 0, pos - 1);
+    // 从层序中筛选出左子树的结点
+    SString leftLevel = FilterLevel(level, leftIn);
+    T->lchild = CreateTree_LevelIn(leftLevel, leftIn);
+    // 构造右子树：
+    // 中序序列中，根结点右侧的剩余元素对应右子树的中序序列（即 in[pos+1..end]）
+    SString rightIn = SubString(in, pos + 1);
+    // 从层序中筛选出右子树的结点
+    SString rightLevel = FilterLevel(level, rightIn);
+    T->rchild = CreateTree_LevelIn(rightLevel, rightIn);
+    return T;
+}
+```
+
+
+#### 线索二叉树
+
+!!! abstract "线索二叉树的概念"
+    利用二叉树中的空指针域，存放指向该结点在某种遍历次序下的前驱和后继结点的指针。
+
+**基本思想：** 在含有n个结点的二叉树中，有n+1个空指针域，可以利用这些空指针存放前驱或后继的线索。
+
+**结点结构：**
+```c
+typedef struct ThreadNode {
+    ElemType data;                     // 数据域
+    struct ThreadNode *lchild, *rchild; // 左右孩子指针
+    int ltag, rtag;                    // 左右线索标志
+} ThreadNode, *ThreadTree;
+```
+
+**标志位说明：**
+- `ltag = 0`：lchild指向左孩子；`ltag = 1`：lchild指向前驱
+- `rtag = 0`：rchild指向右孩子；`rtag = 1`：rchild指向后继
+
+##### 中序线索二叉树
+
+**构造过程：**
+```c
+// 中序线索化递归函数
+void InThread(ThreadTree &p, ThreadTree &pre) {
+    if (p != NULL) {
+        InThread(p->lchild, pre);        // 递归线索化左子树
+        
+        if (p->lchild == NULL) {         // 左子树为空，建立前驱线索
+            p->ltag = 1;
+            p->lchild = pre;
+        }
+        if (pre != NULL && pre->rchild == NULL) { // 建立后继线索
+            pre->rtag = 1;
+            pre->rchild = p;
+        }
+        pre = p;                         // 更新前驱结点
+        
+        InThread(p->rchild, pre);        // 递归线索化右子树
+    }
+}
+
+// 主函数
+void CreateInThread(ThreadTree &T) {
+    ThreadTree pre = NULL;
+    if (T != NULL) {
+        InThread(T, pre);
+        if (pre->rchild == NULL) {       // 处理最后一个结点
+            pre->rtag = 1;
+        }
+    }
+}
+```
+
+**遍历操作：**
+```c
+// 找到中序遍历的第一个结点
+ThreadNode *Firstnode(ThreadNode *p) {
+    while (p->ltag == 0)                 // 沿左孩子走到底
+        p = p->lchild;
+    return p;
+}
+
+// 找到中序遍历的后继结点
+ThreadNode *Nextnode(ThreadNode *p) {
+    if (p->rtag == 0)                    // 有右子树
+        return Firstnode(p->rchild);     // 右子树的最左结点
+    else
+        return p->rchild;                // 直接后继
+}
+
+// 中序遍历线索二叉树
+void InOrder_Thread(ThreadTree T) {
+    for (ThreadNode *p = Firstnode(T); p != NULL; p = Nextnode(p))
+        visit(p);
+}
+```
+
+##### 其他线索二叉树
+
+!!! note "先序和后序线索化特点"
+    
+    **先序线索二叉树：**
+    - 后继查找：有左孩子则后继为左孩子，否则为右孩子，叶结点的后继由线索指出
+    - 前驱查找：较复杂，通常在线索化过程中处理
+    
+    **后序线索二叉树：**
+    - 后继查找规则：
+        1. 若为根结点，后继为空
+        2. 若为双亲的右孩子，或为双亲的左孩子且双亲无右子树，后继为双亲
+        3. 若为双亲的左孩子且双亲有右子树，后继为双亲右子树中后序遍历的第一个结点
+
+### 5.4 树和森林
+
+#### 树的存储结构
+
+**双亲表示法：**
+```c
+typedef struct {
+    ElemType data;
+    int parent;                          // 双亲位置
+} PTNode;
+
+typedef struct {
+    PTNode nodes[MAXSIZE];
+    int n;                              // 结点数
+} PTree;
+```
+
+**孩子表示法：**
+```c
+typedef struct CNode {
+    int child;                          // 孩子结点在数组中的位置
+    struct CNode *next;
+} CNode;
+
+typedef struct {
+    ElemType data;
+    CNode *firstchild;                  // 第一个孩子
+} CTBox;
+
+typedef struct {
+    CTBox nodes[MAXSIZE];
+    int n, r;                          // 结点数和根的位置
+} CTree;
+```
+
+**孩子兄弟表示法（二叉树表示法）：**
+```c
+typedef struct CSNode {
+    ElemType data;
+    struct CSNode *firstchild, *nextsibling; // 第一个孩子和右兄弟
+} CSNode, *CSTree;
+```
+
+#### 树、森林与二叉树的转换
+
+!!! tip "转换规则"
+    
+    **树转二叉树：**
+    1. 加线：在所有兄弟结点之间加一条连线
+    2. 去线：树中每个结点，只保留与第一个孩子结点的连线，删除与其他孩子的连线
+    3. 层次调整：以树的根结点为轴心，将整棵树顺时针旋转一定角度
+    
+    **森林转二叉树：**
+    1. 把每棵树转换为二叉树
+    2. 第一棵二叉树不动，其余二叉树依次作为前一棵二叉树根结点的右子树
+    
+    **二叉树转树或森林：**
+    1. 若二叉树非空，则根结点的右子树为森林，左子树为第一棵树
+    2. 按照树转二叉树的逆过程进行
+
+#### 树和森林的遍历
+
+**树的遍历：**
+- **先根遍历**：先访问根结点，再依次遍历各子树
+- **后根遍历**：先依次遍历各子树，再访问根结点
+
+**森林的遍历：**
+- **先序遍历**：依次对森林中每棵树进行先根遍历
+- **中序遍历**：依次对森林中每棵树进行后根遍历
+
+!!! important "遍历等价性"
+    - 树的先根遍历 ≡ 对应二叉树的先序遍历
+    - 树的后根遍历 ≡ 对应二叉树的中序遍历
+    - 森林的先序遍历 ≡ 对应二叉树的先序遍历
+    - 森林的中序遍历 ≡ 对应二叉树的中序遍历
+
+### 5.5 哈夫曼树和哈夫曼编码
+
+!!! abstract "基本概念"
+    - **路径长度**：从树中一个结点到另一个结点之间的分支数目
+    - **结点的权**：给每个结点赋予的一个有意义的数值
+    - **结点的带权路径长度**：从根结点到该结点之间的路径长度与该结点权的乘积
+    - **树的带权路径长度（WPL）**：树中所有叶结点的带权路径长度之和
+
+**哈夫曼树（最优二叉树）：** 在含有n个带权叶结点的二叉树中，带权路径长度最小的二叉树。
+
+#### 哈夫曼树的构造
+
+!!! example "哈夫曼算法"
+    1. 初始化：由给定的n个权值构成n棵只有根结点的二叉树，得到森林F
+    2. 选取和合并：在F中选取两棵根结点权值最小的树作为左右子树，构造一棵新的二叉树，新树根结点权值为左右子树权值之和
+    3. 删除和加入：从F中删除被选取的两棵树，把新构造的树加入F中
+    4. 重复步骤2-3，直到F中只剩一棵树为止
+
+**算法实现：**
+```c
+typedef struct {
+    int weight;                         // 权值
+    int parent, lch, rch;               // 双亲、左孩子、右孩子下标
+} HTNode, *HuffmanTree;
+
+void CreateHuffmanTree(HuffmanTree &HT, int *w, int n) {
+    if (n <= 1) return;
+    int m = 2 * n - 1;                  // 哈夫曼树总结点数
+    HT = new HTNode[m + 1];             // 0号单元未用
+    
+    // 初始化
+    for (int i = 1; i <= m; ++i) {
+        HT[i].parent = HT[i].lch = HT[i].rch = 0;
+    }
+    for (int i = 1; i <= n; ++i) {
+        HT[i].weight = w[i-1];
+    }
+    
+    // 构造哈夫曼树
+    for (int i = n + 1; i <= m; ++i) {
+        int s1, s2;
+        Select(HT, i - 1, &s1, &s2);   // 选择权值最小的两个结点
+        HT[s1].parent = HT[s2].parent = i;
+        HT[i].lch = s1; HT[i].rch = s2;
+        HT[i].weight = HT[s1].weight + HT[s2].weight;
+    }
+}
+```
+
+#### 哈夫曼编码
+
+**前缀编码：** 任何一个字符的编码都不是另一个字符编码的前缀。
+
+!!! tip "哈夫曼编码特点"
+    - 哈夫曼编码是前缀编码
+    - 哈夫曼编码是最优前缀编码，即平均编码长度最短
+    - 编码过程：从叶结点到根结点逆向求编码
+    - 译码过程：从根结点开始，逐位读入编码，到达叶结点输出字符
 
 ## ch6. 图
-
-!!! todo "待完善内容"
-    图的基本概念、存储结构、遍历算法、最小生成树、最短路径、拓扑排序、关键路径等
+todo "待补充内容"
 
 ## ch7. 查找
-
-!!! todo "待完善内容"
-    线性查找、二分查找、分块查找、B树、B+树、散列表等
+todo "待补充内容"
 
 ## ch8. 排序
-
-!!! todo "待完善内容"
-    插入排序、选择排序、交换排序、归并排序、基数排序、外部排序等
-
+todo "待补充内容"
