@@ -703,4 +703,22 @@ $$N = r^E \times M$$
 !!! warning "注意区分"
     Cache行结构和主存地址结构是不同的概念，不要与DRAM的内部结构混淆。
 
+
+Cache行
+```
+|V|D|(替换控制位)|数据位|
+```
+
+V = 1 D = 1 替换控制位为log_2(组号) 数据位为块bit位数
+
 ![Cache与主存地址关系](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/dizhi.png)
+
+
+
+![TLB和Cache](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/TLB.png)
+
+
+带TLB的CPU访存
+
+
+![CPU访存](https://eclipseyue-1323281044.cos.ap-nanjing.myqcloud.com/pic/cpuam.png)
