@@ -2,15 +2,21 @@
 site_name: 月全食的笔记本
 site_url: https://eclipseyue.github.io
 site_description: 个人网站文档
+site_author: eclipseyue
+repo_name: eclipseyue.github.io
+repo_url: https://github.com/eclipseyue/eclipseyue.github.io
+copyright: Copyright &copy; 2024 - Present <a href="https://github.com/eclipseyue/" target="_blank" rel="noopener">eclipseyue</a>
 
 # [Navigation]
 nav:
+  - 首页: index.md
+
   - 个人:
     - 个人介绍: ME/profile.md
-  
+
   - 笔记:
     - 笔记导航: Note/index.md
-    - 编译原理: 
+    - 编译原理:
       - 课程笔记: Note/compile.md
 
   - 数学:
@@ -35,7 +41,7 @@ nav:
       - 强化学习: AI/reinforcement_learning/reinforcement_learning.md
     - 其他:
       - 其他: AI/other/1.md
-    
+
 
 
   - CS:
@@ -75,74 +81,136 @@ nav:
 
 theme:
   name: material
-  # icon:
-  #   logo: assets/favicon.jpg      # 网站图标
-  #   repo: assets/favicon.jpg        # 仓库图标
+  language: zh
+  icon:
+    logo: material/coffee
+    repo: fontawesome/brands/git-alt
+    edit: material/pencil
 
-  favicon: assets/favicon.jpg      # 网站图标
+  favicon: assets/favicon.jpeg      # 网站图标
   palette:
+    # 跟随系统
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 跟随系统
+
     # 亮色主题
     - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: indigo
+      scheme: default # 日间模式
+      primary: white # 顶栏
+      accent: indigo # 交互高亮色
       toggle:
         icon: material/brightness-7
-        name: 切换至暗色模式
+        name: 亮色模式
 
     # 暗色主题
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
+      scheme: slate # 夜间模式
+      primary: black
       accent: indigo
       toggle:
         icon: material/brightness-4
-        name: 切换至亮色模式
-  font:
-    text: Roboto
-    code: Roboto Mono
+        name: 暗色模式
+  font: false
   features:
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.action.view
+    - content.footnote.tooltips
+    - content.tabs.link
+    - header.autohide
+    - navigation.tracking
     - navigation.top
     - navigation.tabs
-    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - toc.follow
+    - search.highlight
+    - search.share
+    - search.suggest
 
-  # 导航栏设置
-  nav_style: dark          # 导航栏样式
-  collapse_navigation: true # 折叠导航
-  sticky_navigation: true  # 固定导航
-  
 
 markdown_extensions:
+  - meta
+  - def_list
+  - attr_list
+  - md_in_html
+  - sane_lists
   - admonition
   - footnotes
-  - meta
   - toc:
       permalink: true
-  - codehilite:
-      guess_lang: false
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.tasklist
+      toc_depth: 3
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.magiclink
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums: true
+      auto_title: true
+      linenums_style: pymdownx-inline
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
-  # - pymdownx.emoji
+
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: info
+  links:
+    not_found: ignore
+    absolute_links: ignore
+    unrecognized_links: ignore
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/eclipseyue
+      name: GitHub
 
 extra_css:
   - stylesheets/extra.css
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  - https://cdn.tonycrane.cc/utils/katex.min.css
+  - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
+  - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
 
 extra_javascript:
-  - javascripts/extra.js
-  - javascripts/katex.js 
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js  
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js
   - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js
 
 
 plugins:
   - search
-
-
+  - glightbox:
+      width: 80%
+  - git-revision-date-localized:
+      type: datetime
+      timezone: Asia/Shanghai
+      enable_creation_date: true
+      exclude:
+        - index.md
