@@ -1,262 +1,241 @@
-记录力扣题
+# 力扣记录
+
+这里记录刷题过程中的题型、核心思路和代码模板。每道题尽量写清楚“为什么这样做”，不要只留下代码。
+
 ## 哈希表
-1. 两数之和
-```C++
+
+### 1. 两数之和
+
+思路：遍历数组，用哈希表保存已经见过的数和下标。对当前数 `x`，检查 `target - x` 是否出现过。
+
+```cpp
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> num_map;
-        vector<int> result;
+        unordered_map<int, int> index;
 
         for (int i = 0; i < nums.size(); ++i) {
-            int complement = target - nums[i];
-            if (num_map.find(complement) != num_map.end()) {
-                result.push_back(num_map[complement]);
-                result.push_back(i);
-                return result;
+            int need = target - nums[i];
+            if (index.find(need) != index.end()) {
+                return {index[need], i};
             }
-            num_map[nums[i]] = i;
+            index[nums[i]] = i;
         }
 
-        return result; // 如果没有找到，返回空向量
+        return {};
     }
 };
 ```
-3. 无重复字符的最长子串
-```C++
 
-49. 字母异位词分组
-排序做哈希，哈希表取出
-```C++
+### 3. 无重复字符的最长子串
+
+思路：滑动窗口。右指针扩张窗口，遇到重复字符时移动左指针，保证窗口内没有重复字符。
+
+```cpp
 class Solution {
-    public:
-        vector<vector<string>> groupAnagrams(vector<string>& strs){
-            std::unordered_map<string,vector<string>> mp;
-            for(const string& s: strs){
-                string key = strs;
-                sort(key.begin(),key.end());
-                mp[key].push_back();
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char, int> last;
+        int left = 0;
+        int ans = 0;
+
+        for (int right = 0; right < s.size(); ++right) {
+            char c = s[right];
+            if (last.count(c) && last[c] >= left) {
+                left = last[c] + 1;
             }
-            vector<vector<string>> res;
-            for(auto &c: mp){
-                res.push_back(c.second);
-            }
+            last[c] = right;
+            ans = max(ans, right - left + 1);
         }
-}
+
+        return ans;
+    }
+};
 ```
-128. 最长连续序列
-```C++
+
+### 49. 字母异位词分组
+
+思路：把每个字符串排序后作为 key，异位词排序后的 key 相同。
+
+```cpp
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> groups;
+
+        for (const string& s : strs) {
+            string key = s;
+            sort(key.begin(), key.end());
+            groups[key].push_back(s);
+        }
+
+        vector<vector<string>> ans;
+        for (auto& item : groups) {
+            ans.push_back(item.second);
+        }
+        return ans;
+    }
+};
+```
+
+### 128. 最长连续序列
+
+思路：把所有数放入哈希集合。只有当 `num - 1` 不存在时，才把 `num` 当作连续序列的起点向后扩展。
+
+```cpp
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        unordered_set<int> num_set(nums.begin(), nums.end());
-        int longest = 0;
+        unordered_set<int> seen(nums.begin(), nums.end());
+        int ans = 0;
 
-        for (int num : num_set) {
-            // 只有当当前数是一个序列的最小值时才进入查找
-            if (num_set.find(num - 1) == num_set.end()) {
-                int currentNum = num;
-                int currentLength = 1;
-
-                // 向后查找连续的数字
-                while (num_set.find(currentNum + 1) != num_set.end()) {
-                    currentNum++;
-                    currentLength++;
-                }
-
-                longest = max(longest, currentLength);
+        for (int num : seen) {
+            if (seen.find(num - 1) != seen.end()) {
+                continue;
             }
+
+            int cur = num;
+            int len = 1;
+            while (seen.find(cur + 1) != seen.end()) {
+                ++cur;
+                ++len;
+            }
+            ans = max(ans, len);
         }
 
-        return longest;
+        return ans;
     }
 };
 ```
 
-283. 移动零
-```C++
+## 双指针与滑动窗口
+
+### 283. 移动零
+
+思路：用 `write` 指针维护下一个非零元素应该写入的位置。
+
+```cpp
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int lastNonZeroFoundAt = 0; // 指向下一个非零元素的位置
+        int write = 0;
 
-        // 将非零元素移动到数组的前面
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] != 0) {
-                nums[lastNonZeroFoundAt] = nums[i];
-                lastNonZeroFoundAt++;
+        for (int x : nums) {
+            if (x != 0) {
+                nums[write++] = x;
             }
         }
 
-        // 将剩余的位置填充为零
-        for (int i = lastNonZeroFoundAt; i < nums.size(); i++) {
-            nums[i] = 0;
+        while (write < nums.size()) {
+            nums[write++] = 0;
         }
     }
 };
 ```
 
-11. 盛最多水的容器
-```C++
-#include <vector>
-#include <algorithm>
-using namespace std;
+### 11. 盛最多水的容器
 
+思路：双指针从两端向中间移动。每次移动较短的那条边，因为面积受短边限制。
+
+```cpp
 class Solution {
 public:
     int maxArea(vector<int>& height) {
         int left = 0;
         int right = height.size() - 1;
-        int maxVol = 0;
+        int ans = 0;
 
         while (left < right) {
-            int h1 = height[left];
-            int h2 = height[right];
-            int vol = (right - left) * min(h1, h2);
-            maxVol = max(maxVol, vol);
+            int h = min(height[left], height[right]);
+            ans = max(ans, h * (right - left));
 
-            // 移动较小的那一侧
-            if (h1 < h2)
-                left++;
-            else
-                right--;
+            if (height[left] < height[right]) {
+                ++left;
+            } else {
+                --right;
+            }
         }
 
-        return maxVol;
+        return ans;
     }
 };
-
-
 ```
 
-15. 三数之和
-```C++
+### 15. 三数之和
+
+思路：排序后固定第一个数，剩余两个数用双指针查找。注意去重。
+
+```cpp
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> res;
-        sort(nums.begin(),nums.end());
-        for(int i = 0;i < nums.size()-2;i++){
-            if(i > 0 && nums[i] == nums[i-1]) continue;
+        vector<vector<int>> ans;
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i + 2 < nums.size(); ++i) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
             int left = i + 1;
-            int right = nums.size()-1;
+            int right = nums.size() - 1;
             int target = -nums[i];
-            while(left<right){
-                if(nums[left]+nums[right] == target){
-                    res.push_back({nums[i], nums[left], nums[right]});
-                    while(left < right && nums[left] == nums[left + 1]) left++;
-                    while(left < right && nums[right] == nums[right - 1]) right--;
-                    left++;
-                    right--;
-                }else if(nums[left]+nums[right] < target){
-                    left++;
-                }else if(nums[left]+nums[right] > target){
-                    right--;
+
+            while (left < right) {
+                int sum = nums[left] + nums[right];
+                if (sum == target) {
+                    ans.push_back({nums[i], nums[left], nums[right]});
+                    while (left < right && nums[left] == nums[left + 1]) ++left;
+                    while (left < right && nums[right] == nums[right - 1]) --right;
+                    ++left;
+                    --right;
+                } else if (sum < target) {
+                    ++left;
+                } else {
+                    --right;
                 }
             }
         }
-        return res;
+
+        return ans;
     }
 };
 ```
 
-注意限定条件
+### 42. 接雨水
 
-42. 接雨水
-**大化小**
-比较自然地，如果是坑，一个格子此处可以接水的量是：min(左边最高的柱子，右边最高的柱子) - 当前柱子的高度
-如果是墙/平地，也算上自己，就是0
+核心结论：每个位置能接的水量是
 
-超时：
-```C++
-class Solution {
-public:
-    int trap(vector<int>& height) {
-        int n = height.size();
-        if (n == 0) return 0;
-        int vol = 0;
-        
-        for (int i = 0; i < n; ++i) {
-            int leftMax = 0, rightMax = 0;
-            
-            // 找到左边最高的墙
-            for (int j = i; j >= 0; --j) {
-                leftMax = max(leftMax, height[j]);
-            }
-            
-            // 找到右边最高的墙
-            for (int j = i; j < n; ++j) {
-                rightMax = max(rightMax, height[j]);
-            }
-            
-            // 当前位置的积水高度由左右两边的最低墙决定
-            int currentWater = min(leftMax, rightMax) - height[i];
-            if (currentWater > 0) {
-                vol += currentWater;
-            }
-        }
-        
-        return vol;
-    }
-};
+```text
+min(左侧最高柱子, 右侧最高柱子) - 当前柱子高度
 ```
-一言以蔽之，小不能再小（每次从小算起）
-4ms
-```C++
-#include <vector>
-using namespace std;
 
+如果结果为负，说明这个位置不能接水。
+
+#### 双指针写法
+
+```cpp
 class Solution {
 public:
     int trap(vector<int>& height) {
         if (height.empty()) return 0;
 
-        int left = 0, right = height.size() - 1;
-        int left_max = 0, right_max = 0;
+        int left = 0;
+        int right = height.size() - 1;
+        int leftMax = 0;
+        int rightMax = 0;
         int ans = 0;
 
         while (left < right) {
-            if (height[left] < height[right]) {
-                // 当前位置是 left
-                if (height[left] >= left_max)
-                    left_max = height[left];  // 更新左最高墙
-                else
-                    ans += left_max - height[left];  // 可以接水
-                left++;
-            } else {
-                // 当前位置是 right
-                if (height[right] >= right_max)
-                    right_max = height[right];  // 更新右最高墙
-                else
-                    ans += right_max - height[right];  // 可以接水
-                right--;
-            }
-        }
-
-        return ans;
-    }
-};
-```
-一样的逻辑
-0ms
-```C++
-class Solution {
-public:
-    int trap(vector<int>& height) {
-        int left = 0, right = height.size() - 1;
-        int leftMax = height[0], rightMax = height[right];
-
-        int ans = 0;
-        while(left < right){
             leftMax = max(leftMax, height[left]);
             rightMax = max(rightMax, height[right]);
 
-            if(height[left] < height[right]){
+            if (height[left] < height[right]) {
                 ans += leftMax - height[left];
-                left++;
-            }else{
+                ++left;
+            } else {
                 ans += rightMax - height[right];
-                right--;
+                --right;
             }
         }
 
@@ -264,65 +243,89 @@ public:
     }
 };
 ```
-438. 找到字符串中所有字母异位词
-窗口先吃后吐(注意滑动窗口是针对元素都为正数的情况)
-```C++
 
+### 438. 找到字符串中所有字母异位词
 
-一会再记
+思路：固定长度滑动窗口，维护窗口内每个字符的出现次数。
 
-560. 和为K的子数组
-使用一个叫做前缀和的技巧
-```C++
+```cpp
 class Solution {
 public:
-    int subarraySum(vector<int>& nums, int k) {
-        int cnt = 0;
-        int curSum = 0;
-        unordered_map<int, int> precount;
-        precount[0] = 1;
-        
-        for(int i = 0; i < nums.size(); i++){
-            curSum += nums[i];
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> ans;
+        if (s.size() < p.size()) return ans;
 
-            if(precount.find(curSum - k) != precount.end()){
-                cnt += precount[curSum - k];
+        vector<int> need(26, 0), window(26, 0);
+        for (char c : p) need[c - 'a']++;
+
+        int len = p.size();
+        for (int i = 0; i < s.size(); ++i) {
+            window[s[i] - 'a']++;
+            if (i >= len) {
+                window[s[i - len] - 'a']--;
             }
-            // 对于k为0的情况
-            precount[curSum]++;
+            if (window == need) {
+                ans.push_back(i - len + 1);
+            }
         }
-        return cnt;
+
+        return ans;
     }
 };
 ```
 
+## 前缀和
 
+### 560. 和为 K 的子数组
 
+思路：记录前缀和出现次数。当前前缀和为 `cur` 时，如果之前出现过 `cur - k`，说明中间这段和为 `k`。
 
+```cpp
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int ans = 0;
+        int cur = 0;
+        unordered_map<int, int> count;
+        count[0] = 1;
 
+        for (int x : nums) {
+            cur += x;
+            if (count.find(cur - k) != count.end()) {
+                ans += count[cur - k];
+            }
+            count[cur]++;
+        }
 
-
-
-
-
-
-
-
-
-
+        return ans;
+    }
+};
+```
 
 ## 链表
-160. 相交链表
-!!! info "思路"
-    1. 使用双指针法，分别从两个链表的头部开始遍历。
-    2. 当指针到达链表尾部时，切换到另一个链表的头部继续遍历。
-    3. 如果两个指针相遇，则说明找到了相交点；如果遍历完两个链表仍未相遇，则说明没有相交点。
 
-234. 回文链表
-!!! info "思路"
-    1. 使用快慢指针找到链表的**中点**。
-    2. 反转链表的后半部分。
-    3. 比较前半部分和反转后的后半部分是否相等。
-    或者干脆全部反转搞一个副本遍历比较。
+### 160. 相交链表
 
-快慢结点找中点。
+!!! info "思路"
+    1. 使用双指针，分别从两个链表头部开始遍历。
+    2. 指针到达尾部后切换到另一条链表的头部。
+    3. 如果两个链表相交，两个指针会在相交点相遇；如果不相交，会同时走到 `nullptr`。
+
+### 234. 回文链表
+
+!!! info "思路"
+    1. 使用快慢指针找到链表中点。
+    2. 反转链表后半部分。
+    3. 比较前半部分和反转后的后半部分。
+    4. 更简单但额外占空间的做法：复制一份值数组后双指针比较。
+
+## 复盘模板
+
+```text
+题目：
+题型：
+核心技巧：
+复杂度：
+第一次错误：
+是否需要二刷：
+```

@@ -27,20 +27,36 @@ nav:
       - 线性代数: Math/linear_algebra/linear_algebra.md
     - 概率论:
       - 概率论: Math/probability/probability.md
-  - AI:
-    - AI导航: AI/index.md
-    - 机器学习:
-      - 机器学习: AI/machine_learning/machine_learning.md
-    - 深度学习:
-      - 深度学习: AI/deep_learning/deep_learning.md
-    - 自然语言处理:
-      - 自然语言处理: AI/nlp/nlp.md
-    - 计算机视觉:
-      - 计算机视觉: AI/cv/cv.md
-    - 强化学习:
-      - 强化学习: AI/reinforcement_learning/reinforcement_learning.md
-    - 其他:
-      - 其他: AI/other/1.md
+  - AI理论原理:
+    - 理论导航: AI_theory/index.md
+    - 机器学习: AI_theory/machine_learning/machine_learning.md
+    - 深度学习: AI_theory/deep_learning/deep_learning.md
+    - 自然语言处理: AI_theory/nlp/nlp.md
+    - 计算机视觉: AI_theory/cv/cv.md
+    - 强化学习: AI_theory/reinforcement_learning/reinforcement_learning.md
+    - 其他专题: AI_theory/other/index.md
+
+  - AI Infra:
+    - Infra 导航: AI_infra/index.md
+    - 训练:
+      - 训练总览: AI_infra/training/index.md
+      - 数据与样本工程: AI_infra/training/data.md
+      - 分布式训练: AI_infra/training/distributed.md
+      - 训练调试与稳定性: AI_infra/training/debugging.md
+    - 推理:
+      - 推理总览: AI_infra/inference/index.md
+      - 模型服务: AI_infra/inference/serving.md
+      - 推理优化: AI_infra/inference/optimization.md
+      - 评测与观测: AI_infra/inference/evaluation.md
+
+  - AI Agent:
+    - Agent 导航: AI_agent/index.md
+    - 基础概念: AI_agent/fundamentals.md
+    - RAG: AI_agent/rag.md
+    - 工具调用与 MCP: AI_agent/tool_use_mcp.md
+    - 记忆与上下文工程: AI_agent/memory_context.md
+    - 多 Agent 协作: AI_agent/multi_agent.md
+    - 工程化与评测: AI_agent/engineering_evaluation.md
 
 
 
@@ -68,6 +84,7 @@ nav:
     - 力扣记录: Tech/leetcode_record.md
     - record: Tech/record.md
     - STL容器: Tech/stl_cheatsheet.md
+    - C++总览: Tech/cpp_Basic.md
     - C++:
       - C++基础: Tech/cpp/cpp_basic.md
       - C++八股: Tech/cpp/cpp_baguette.md
@@ -212,5 +229,6 @@ plugins:
       type: datetime
       timezone: Asia/Shanghai
       enable_creation_date: true
+      enable_git_follow: false
       exclude:
         - index.md
