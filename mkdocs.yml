@@ -40,6 +40,12 @@ nav:
       - 其他专题: AI/theory/other.md
     - AI Infra:
       - Infra 导航: AI/infra/index.md
+      - PyTorch 后端:
+        - 后端总览: AI/infra/pytorch-backend/index.md
+        - PrivateUse1 P0 链路: AI/infra/pytorch-backend/privateuse1-p0-flow.md
+        - 2D Padded Layout: AI/infra/pytorch-backend/tensor-layout-2d-padded.md
+        - 后端路径图: AI/infra/pytorch-backend/backend-paths.md
+        - P1 Readiness 路线: AI/infra/pytorch-backend/p1-readiness-roadmap.md
       - 训练:
         - 训练总览: AI/infra/training/index.md
         - 数据与样本工程: AI/infra/training/data.md
@@ -50,6 +56,8 @@ nav:
         - 模型服务: AI/infra/inference/serving.md
         - 推理优化: AI/infra/inference/optimization.md
         - 评测与观测: AI/infra/inference/evaluation.md
+      - 硬件:
+        - AI 加速器指标: AI/infra/hardware/accelerator-metrics.md
     - AI Agent:
       - Agent 导航: AI/agent/index.md
       - 基础概念: AI/agent/fundamentals.md
@@ -70,14 +78,19 @@ nav:
     - 算法实践:
       - 算法学习: Tech/algorithm/alg_learn.md
       - 力扣记录: Tech/algorithm/leetcode_record.md
+    - 工具链:
+      - Codex 与 tmux: Tech/tools/codex-tmux-workflow.md
     - 工程记录:
       - 日志与复盘: Tech/logs/record.md
+      - 工程环境经验: Tech/logs/engineering-environment-notes.md
+      - 工作日报摘要: Tech/logs/work-diary-summary.md
     - 单篇文档:
       - 文档索引: Tech/articles/index.md
 
   - 论文:
     - 论文导航: Paper/index.md
     - 论文笔记: Paper/paper.md
+    - 研究工作流: Paper/research_workflow.md
 
   - 求职:
     - 求职导航: Career/index.md

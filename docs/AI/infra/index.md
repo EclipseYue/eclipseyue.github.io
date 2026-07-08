@@ -4,6 +4,12 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
 
 ## 目录
 
+- PyTorch 后端
+  - [后端总览](pytorch-backend/index.md)
+  - [PrivateUse1 P0 链路](pytorch-backend/privateuse1-p0-flow.md)
+  - [2D Padded Layout](pytorch-backend/tensor-layout-2d-padded.md)
+  - [后端路径图](pytorch-backend/backend-paths.md)
+  - [P1 Readiness 路线](pytorch-backend/p1-readiness-roadmap.md)
 - 训练
   - [训练总览](training/index.md)
   - [数据与样本工程](training/data.md)
@@ -14,6 +20,8 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
   - [模型服务](inference/serving.md)
   - [推理优化](inference/optimization.md)
   - [评测与观测](inference/evaluation.md)
+- 硬件
+  - [AI 加速器指标](hardware/accelerator-metrics.md)
 
 ## 关注维度
 

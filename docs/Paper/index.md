@@ -19,6 +19,7 @@
 ## 当前笔记
 
 - [论文笔记汇总](paper.md)
+- [论文调研与实验工作流](research_workflow.md)
 
 ## 阅读原则
 
