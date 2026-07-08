@@ -11,11 +11,17 @@
 
 ## 目录
 
-- [机器学习](machine_learning/machine_learning.md)：监督学习、无监督学习、概率模型、评估指标。
-- [深度学习](deep_learning/deep_learning.md)：神经网络、优化算法、训练技巧、常见结构。
-- [自然语言处理](nlp/nlp.md)：语言模型、表示学习、Transformer、生成式模型。
-- [计算机视觉](cv/cv.md)：卷积网络、视觉 Transformer、检测、分割、多模态视觉。
-- [强化学习](reinforcement_learning/reinforcement_learning.md)：MDP、值函数、策略优化、RLHF/RLAIF 的理论背景。
+- [机器学习](machine_learning.md)：监督学习、无监督学习、概率模型、评估指标。
+- [深度学习](deep_learning.md)：神经网络、优化算法、训练技巧、常见结构。
+- [自然语言处理](nlp.md)：语言模型、表示学习、Transformer、生成式模型。
+- [计算机视觉](cv.md)：卷积网络、视觉 Transformer、检测、分割、多模态视觉。
+- [强化学习](reinforcement_learning.md)：MDP、值函数、策略优化、RLHF/RLAIF 的理论背景。
+- [其他专题](other.md)：暂时无法归入主线的理论问题。
+
+## 相关入口
+
+- [AI Infra](../infra/index.md)：训练、推理、服务和优化。
+- [AI Agent](../agent/index.md)：RAG、工具调用、上下文工程和评测。
 
 ## 笔记规范
 

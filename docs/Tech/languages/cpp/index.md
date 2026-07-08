@@ -2,8 +2,9 @@
 
 这页作为 C++ 学习入口，具体内容拆在下面两篇笔记中：
 
-- [C++ 基础](cpp/cpp_basic.md)
-- [C++ 八股](cpp/cpp_baguette.md)
+- [C++ 基础](cpp_basic.md)
+- [C++ 八股](cpp_baguette.md)
+- [STL 容器](stl_cheatsheet.md)
 
 ## 学习主线
 

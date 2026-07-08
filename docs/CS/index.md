@@ -8,6 +8,7 @@
 2. 计算机组成：理解数据表示、指令系统、CPU、存储层次和 IO。
 3. 操作系统：从进程线程、内存管理、文件系统到并发同步。
 4. 计算机网络：从网络体系结构开始，逐层理解协议和性能指标。
+5. 编译原理：理解从源代码到目标代码的翻译链路。
 
 ## 目录
 
@@ -15,6 +16,7 @@
 - [计算机组成原理](computer_organization/computer_organization.md)
 - [操作系统](operating_system/operating_system.md)
 - [计算机网络](computer_network/computer_network.md)
+- [编译原理](compiler/compile.md)
 
 ## 复习方法
 

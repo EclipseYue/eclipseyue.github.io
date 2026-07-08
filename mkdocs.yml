@@ -11,90 +11,86 @@ copyright: Copyright &copy; 2024 - Present <a href="https://github.com/eclipseyu
 nav:
   - 首页: index.md
 
-  - 个人:
+  - 关于:
     - 个人介绍: ME/profile.md
 
-  - 笔记:
-    - 笔记导航: Note/index.md
-    - 编译原理:
-      - 课程笔记: Note/compile.md
-
-  - 数学:
-    - 数学导航: Math/index.md
-    - 微积分:
+  - 基础知识:
+    - 数学:
+      - 数学导航: Math/index.md
       - 微积分: Math/calculus/calculus.md
-    - 线性代数:
       - 线性代数: Math/linear_algebra/linear_algebra.md
-    - 概率论:
       - 概率论: Math/probability/probability.md
-  - AI理论原理:
-    - 理论导航: AI_theory/index.md
-    - 机器学习: AI_theory/machine_learning/machine_learning.md
-    - 深度学习: AI_theory/deep_learning/deep_learning.md
-    - 自然语言处理: AI_theory/nlp/nlp.md
-    - 计算机视觉: AI_theory/cv/cv.md
-    - 强化学习: AI_theory/reinforcement_learning/reinforcement_learning.md
-    - 其他专题: AI_theory/other/index.md
-
-  - AI Infra:
-    - Infra 导航: AI_infra/index.md
-    - 训练:
-      - 训练总览: AI_infra/training/index.md
-      - 数据与样本工程: AI_infra/training/data.md
-      - 分布式训练: AI_infra/training/distributed.md
-      - 训练调试与稳定性: AI_infra/training/debugging.md
-    - 推理:
-      - 推理总览: AI_infra/inference/index.md
-      - 模型服务: AI_infra/inference/serving.md
-      - 推理优化: AI_infra/inference/optimization.md
-      - 评测与观测: AI_infra/inference/evaluation.md
-
-  - AI Agent:
-    - Agent 导航: AI_agent/index.md
-    - 基础概念: AI_agent/fundamentals.md
-    - RAG: AI_agent/rag.md
-    - 工具调用与 MCP: AI_agent/tool_use_mcp.md
-    - 记忆与上下文工程: AI_agent/memory_context.md
-    - 多 Agent 协作: AI_agent/multi_agent.md
-    - 工程化与评测: AI_agent/engineering_evaluation.md
-
-
-
-  - CS:
-    - CS导航: CS/index.md
-    - 数据结构:
+    - CS:
+      - CS导航: CS/index.md
       - 数据结构: CS/data_structure/data_structure.md
-    - 计算机组成原理:
       - 计算机组成原理: CS/computer_organization/computer_organization.md
-    - 操作系统:
       - 操作系统: CS/operating_system/operating_system.md
-    - 计算机网络:
       - 计算机网络: CS/computer_network/computer_network.md
+      - 编译原理: CS/compiler/compile.md
+
+  - AI:
+    - AI 总览: AI/index.md
+    - 理论原理:
+      - 理论导航: AI/theory/index.md
+      - 机器学习: AI/theory/machine_learning.md
+      - 深度学习: AI/theory/deep_learning.md
+      - 自然语言处理: AI/theory/nlp.md
+      - 计算机视觉: AI/theory/cv.md
+      - 强化学习: AI/theory/reinforcement_learning.md
+      - 其他专题: AI/theory/other.md
+    - AI Infra:
+      - Infra 导航: AI/infra/index.md
+      - 训练:
+        - 训练总览: AI/infra/training/index.md
+        - 数据与样本工程: AI/infra/training/data.md
+        - 分布式训练: AI/infra/training/distributed.md
+        - 训练调试与稳定性: AI/infra/training/debugging.md
+      - 推理:
+        - 推理总览: AI/infra/inference/index.md
+        - 模型服务: AI/infra/inference/serving.md
+        - 推理优化: AI/infra/inference/optimization.md
+        - 评测与观测: AI/infra/inference/evaluation.md
+    - AI Agent:
+      - Agent 导航: AI/agent/index.md
+      - 基础概念: AI/agent/fundamentals.md
+      - RAG: AI/agent/rag.md
+      - 工具调用与 MCP: AI/agent/tool_use_mcp.md
+      - 记忆与上下文工程: AI/agent/memory_context.md
+      - 多 Agent 协作: AI/agent/multi_agent.md
+      - 工程化与评测: AI/agent/engineering_evaluation.md
+
+  - 工程技术:
+    - 技术总览: Tech/index.md
+    - 编程语言:
+      - C++ 总览: Tech/languages/cpp/index.md
+      - C++ 基础: Tech/languages/cpp/cpp_basic.md
+      - C++ 八股: Tech/languages/cpp/cpp_baguette.md
+      - STL 容器: Tech/languages/cpp/stl_cheatsheet.md
+      - Java: Tech/languages/java/index.md
+    - 算法实践:
+      - 算法学习: Tech/algorithm/alg_learn.md
+      - 力扣记录: Tech/algorithm/leetcode_record.md
+    - 工程记录:
+      - 日志与复盘: Tech/logs/record.md
+    - 单篇文档:
+      - 文档索引: Tech/articles/index.md
 
   - 论文:
     - 论文导航: Paper/index.md
     - 论文笔记: Paper/paper.md
 
-  - 技术:
-    - 25秋招记录: Tech/25fall_recruitment_record.md
-    - 简历复习: Tech/resume_review.md
-    - 算法学习: Tech/alg_learn.md
-
-    - Java: Tech/java_path.md
-    - 力扣记录: Tech/leetcode_record.md
-    - record: Tech/record.md
-    - STL容器: Tech/stl_cheatsheet.md
-    - C++总览: Tech/cpp_Basic.md
-    - C++:
-      - C++基础: Tech/cpp/cpp_basic.md
-      - C++八股: Tech/cpp/cpp_baguette.md
-
-
+  - 求职:
+    - 求职导航: Career/index.md
+    - 25 秋招记录: Career/25fall_recruitment_record.md
+    - 简历复习: Career/resume_review.md
 
   - 生活:
     - 生活导航: Life/index.md
     - 健康管理: Life/health.md
     - 音乐学习: Life/music.md
+
+  - 收件箱:
+    - 未归档: Inbox/index.md
 
 theme:
   name: material

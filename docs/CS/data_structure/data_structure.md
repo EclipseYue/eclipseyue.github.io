@@ -314,7 +314,7 @@ typedef struct {
     用固定大小的块链表存储，适合大串操作
 
 !!! tip "参考实现"
-    C语言具体实现可参考[cpp](../../Tech/cpp/cpp_basic.md)
+    C语言具体实现可参考 [C++ 基础](../../Tech/languages/cpp/cpp_basic.md)
 
 ### 4.3 KMP算法
 
@@ -1464,5 +1464,4 @@ void CreateHuffmanTree(HuffmanTree &HT, int *w, int n) {
 
 ### 8.4 外部排序
 todo
-
 
