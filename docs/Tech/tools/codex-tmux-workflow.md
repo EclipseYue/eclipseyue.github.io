@@ -21,6 +21,11 @@ tmux kill-session -t codex
 
 这样即使本地终端窗口关闭，远端 shell 仍可继续运行。
 
+## Codex CLI操作
+
+ctrl+T 查看完整对话
+
+
 ## Codex 会话整理
 
 可以使用会话管理工具整理本地 Codex 历史：
