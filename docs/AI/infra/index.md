@@ -10,6 +10,8 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
   - [2D Padded Layout](pytorch-backend/tensor-layout-2d-padded.md)
   - [后端路径图](pytorch-backend/backend-paths.md)
   - [P1 Readiness 路线](pytorch-backend/p1-readiness-roadmap.md)
+- 学习规划
+  - [AI Infra 学习路线](learning-roadmap.md)
 - 训练
   - [训练总览](training/index.md)
   - [数据与样本工程](training/data.md)
