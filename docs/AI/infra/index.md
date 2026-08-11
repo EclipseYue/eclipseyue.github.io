@@ -22,6 +22,8 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
   - [模型服务](inference/serving.md)
   - [推理优化](inference/optimization.md)
   - [评测与观测](inference/evaluation.md)
+  - PD 分离：把 prefill 和 decode 拆成不同资源池，分别优化首 token 延迟、decode 吞吐和 KV Cache 流转。
+  - Mooncake：围绕 PD 分离场景的传输与缓存系统，重点关注 KV Cache 跨节点复用、带宽调度和服务编排。
 - 硬件
   - [AI 加速器指标](hardware/accelerator-metrics.md)
 
@@ -32,6 +34,11 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
 - 显存：参数、激活、KV Cache、batch 对资源的占用。
 - 成本：GPU 时间、存储、网络、运维复杂度。
 - 稳定性：训练是否收敛，服务是否可用，结果是否可复现。
+
+## 新增索引
+
+- [推理总览](inference/index.md)：增加 PD 分离和 Mooncake 相关入口，用于记录大模型在线推理中 prefill/decode 解耦、KV Cache 传输和缓存复用问题。
+- [分布式训练](training/distributed.md)：集中记录多卡、多机训练的并行策略、通信、checkpoint 和排障入口。
 
 ## 和理论笔记的分工
 

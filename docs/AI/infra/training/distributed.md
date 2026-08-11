@@ -20,6 +20,15 @@
 
 把优化器状态、梯度、参数分片保存，降低单卡显存压力。
 
+## 内容索引
+
+- 并行策略：DDP、FSDP、DeepSpeed ZeRO、Megatron TP/PP/CP/EP 的适用边界和组合方式。
+- 通信原语：all-reduce、reduce-scatter、all-gather、broadcast、send/recv，以及它们在反向传播和参数同步中的位置。
+- 调度与拓扑：单机多卡、多机多卡、节点内 NVLink、节点间 IB/以太网，对训练 step time 的影响。
+- 显存与状态：参数、梯度、优化器状态、激活值、通信 buffer 和 checkpoint buffer 的拆分方式。
+- Checkpoint：分片保存、全量合并、断点恢复、跨并行度转换和推理导出。
+- 稳定性：NCCL timeout、rank hang、straggler、loss 异常、梯度溢出和 dataloader 不均衡。
+
 ## 关键指标
 
 - GPU 利用率。
