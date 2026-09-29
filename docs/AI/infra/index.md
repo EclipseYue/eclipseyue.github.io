@@ -6,10 +6,8 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
 
 - PyTorch 后端
   - [后端总览](pytorch-backend/index.md)
-  - [PrivateUse1 P0 链路](pytorch-backend/privateuse1-p0-flow.md)
-  - [2D Padded Layout](pytorch-backend/tensor-layout-2d-padded.md)
-  - [后端路径图](pytorch-backend/backend-paths.md)
-  - [P1 Readiness 路线](pytorch-backend/p1-readiness-roadmap.md)
+  - [PrivateUse1 插件化适配](pytorch-backend/pytorch-npu.md)
+  - [PyTorch 后端解读](pytorch-backend/pytorch2.x.md)
 - 学习规划
   - [AI Infra 学习路线](learning-roadmap.md)
 - 训练
@@ -22,8 +20,10 @@ AI Infra 记录训练、推理和模型工程化相关内容。这里关注的�
   - [模型服务](inference/serving.md)
   - [推理优化](inference/optimization.md)
   - [评测与观测](inference/evaluation.md)
-  - PD 分离：把 prefill 和 decode 拆成不同资源池，分别优化首 token 延迟、decode 吞吐和 KV Cache 流转。
-  - Mooncake：围绕 PD 分离场景的传输与缓存系统，重点关注 KV Cache 跨节点复用、带宽调度和服务编排。
+- 框架分析
+  - [框架导航](framework/index.md)
+  - [vLLM](framework/vllm.md)
+  - [SGLang](framework/sglang.md)
 - 硬件
   - [AI 加速器指标](hardware/accelerator-metrics.md)
 

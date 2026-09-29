@@ -42,10 +42,8 @@ nav:
       - Infra 导航: AI/infra/index.md
       - PyTorch 后端:
         - 后端总览: AI/infra/pytorch-backend/index.md
-        - PrivateUse1 P0 链路: AI/infra/pytorch-backend/privateuse1-p0-flow.md
-        - 2D Padded Layout: AI/infra/pytorch-backend/tensor-layout-2d-padded.md
-        - 后端路径图: AI/infra/pytorch-backend/backend-paths.md
-        - P1 Readiness 路线: AI/infra/pytorch-backend/p1-readiness-roadmap.md
+        - PrivateUse1 插件化适配: AI/infra/pytorch-backend/pytorch-npu.md
+        - PyTorch 后端解读: AI/infra/pytorch-backend/pytorch2.x.md
       - 学习规划: AI/infra/learning-roadmap.md
       - 训练:
         - 训练总览: AI/infra/training/index.md
@@ -57,6 +55,10 @@ nav:
         - 模型服务: AI/infra/inference/serving.md
         - 推理优化: AI/infra/inference/optimization.md
         - 评测与观测: AI/infra/inference/evaluation.md
+      - 框架分析:
+        - 框架导航: AI/infra/framework/index.md
+        - vLLM: AI/infra/framework/vllm.md
+        - SGLang: AI/infra/framework/sglang.md
       - 硬件:
         - AI 加速器指标: AI/infra/hardware/accelerator-metrics.md
     - AI Agent:
