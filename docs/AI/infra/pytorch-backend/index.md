@@ -4,17 +4,17 @@
 
 ## 目录
 
-- [PrivateUse1 P0 链路](privateuse1-p0-flow.md)：从 `import`、设备注册、allocator 到 H2D/D2D/D2H 拷贝闭环。
-- [2D Padded Layout](tensor-layout-2d-padded.md)：逻辑 tensor 和设备物理 storage 之间的 layout 差异。
-- [后端路径图](backend-paths.md)：从 PyTorch / vLLM / SGLang 到 runtime、custom kernel、模拟器或真实硬件的路径。
-- [P1 Readiness 路线](p1-readiness-roadmap.md)：从 P0 tensor 闭环走向 P1 算子接入的最小验收路线。
+- [PrivateUse1 插件化适配](pytorch-npu.md)：从 dispatch 分派、插件编译入口 init 到特定后端的内存实现。
+- [PyTorch 后端解读](pytorch2.x.md)：从简单计算到算子、`Stream`/`Event` 机制、`eager`/`Graph` 两种执行机制。
+
+> 推理侧框架（vLLM / SGLang）已独立为 [框架分析](../framework/index.md)。
 
 ## 学习顺序
 
-1. 先看 PrivateUse1 如何让 PyTorch 识别一个新设备。
-2. 再看 allocator、copy、storage desc 如何支撑 tensor 创建和数据搬运。
-3. 接着理解 layout、padding 和非连续 tensor 为什么会影响 kernel 正确性。
-4. 最后进入算子层：ATen dispatch、参数打包、runtime launch 和数值对齐。
+1. 先看 dispatch 如何把算子分派到特定后端，以及 `PrivateUse1` 在其中的位置。
+2. 再看插件编译入口 init 如何在 `import` 时完成 op 与 allocator 的注册。
+3. 接着理解特定后端的内存实现：allocator、storage 与 `DeviceAllocator` 抽象。
+4. 最后进入执行层：算子落地、`Stream`/`Event` 同步，以及 `eager` 与 `Graph` 两种执行机制。
 
 ## 记录边界
 
