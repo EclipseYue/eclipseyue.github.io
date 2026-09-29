@@ -1,0 +1,11 @@
+# MkDocs 构建产物
+site/
+.cache/
+
+# 工具 / 会话脚手架
+.omo/
+.kilo/worktrees/
+
+# 编辑器
+.idea/
+.vscode/
